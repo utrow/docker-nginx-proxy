@@ -15,7 +15,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     restart: always
     networks:
-      - proxy_net
+      - shared-nginx
 
   letsencrypt-nginx:
     image: jrcs/letsencrypt-nginx-proxy-companion
@@ -28,9 +28,9 @@ services:
       - nginx-proxy
     restart: always
     networks:
-        - proxy_net
+        - shared-nginx
 
 networks:
-  proxy_net:
+  default:
     external:
-      name: proxy_net
+      name: shared-nginx
